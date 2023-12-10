@@ -26,11 +26,11 @@ public:
 			argument_names.push_back(tmp.first);
 	}
 	int operator()(std::unordered_map<std::string, int> arguments_map) {
-		for (const auto& argument_name : arguments_map) {
-			if (arguments_map.find(argument_name.first) == arguments_map.end()) {
-				throw std::runtime_error("Incorrect argument " + argument_name.first);
+		for (const auto& argument_tmp : argument_names) {
+			if (arguments_map.find(argument_tmp.first) == arguments_map.end()) {
+				throw std::runtime_error("Incorrect argument: " + argument_tmp.first);
 			}
-			arguments_values.push_back(arguments_map[argument_name.first]);
+			arguments_values.push_back(arguments_map[argument_tmp.first]);
 		}
 		return run_method(std::make_index_sequence<sizeof...(Args)>{});
 	}
