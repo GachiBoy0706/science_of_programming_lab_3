@@ -27,10 +27,10 @@ public:
 	}
 	int operator()(std::unordered_map<std::string, int> arguments_map) {
 		for (const auto& argument_tmp : argument_names) {
-			if (arguments_map.find(argument_tmp.first) == arguments_map.end()) {
-				throw std::runtime_error("Incorrect argument: " + argument_tmp.first);
+			if (arguments_map.find(argument_tmp) == arguments_map.end()) {
+				throw std::runtime_error("Incorrect argument: " + argument_tmp);
 			}
-			arguments_values.push_back(arguments_map[argument_tmp.first]);
+			arguments_values.push_back(arguments_map[argument_tmp]);
 		}
 		return run_method(std::make_index_sequence<sizeof...(Args)>{});
 	}
