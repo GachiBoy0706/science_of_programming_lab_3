@@ -21,9 +21,11 @@ private:
 	}
 
 public:
-	Wrapper(ClassType* instance, MethodType method, std::unordered_map<std::string, int> arguments):instance(instance), method(method) {
+	Wrapper(ClassType* instance, MethodType method, std::map<std::string, int> arguments):instance(instance), method(method) {
 		for (auto tmp : arguments) 
 			argument_names.push_back(tmp.first);
+		for (auto tmp : argument_names)
+			std::cout << tmp << std::endl;
 	}
 	int operator()(std::unordered_map<std::string, int> arguments_map) {
 		for (const auto& argument_tmp : argument_names) {

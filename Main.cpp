@@ -25,11 +25,18 @@ public:
 int main() {
     Subject subj;
 
-    Wrapper wrapper(&subj, &Subject::f4, { {"arg1", 0}, {"arg2", 0} });
-    Engine engine;
+    Wrapper wrapper1(&subj, &Subject::f4, { {"arg1", 0}, {"arg2", 0} });
+    Engine engine1;
+   
+    engine1.register_command(&wrapper1, "command1");
 
-    engine.register_command(&wrapper, "command1");
+    std::cout << engine1.execute("command1", { {"arg2", 5}, {"arg1", 4} }) << std::endl;
 
-    std::cout << engine.execute("command1", { {"arg2", 5}, {"arg1", 4} }) << std::endl;
+    Wrapper wrapper2(&subj, &Subject::f1, { {"arg1", 0}, {"arg2", 0} });
 
+    Engine engine2;
+
+    engine2.register_command(&wrapper2, "command2");
+
+    std::cout << engine2.execute("command2", { {"arg2", 5}, {"arg1", 4} }) << std::endl;
 }
